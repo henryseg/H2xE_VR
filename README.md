@@ -1,4 +1,4 @@
-# hypVR
+# H2xE_VR
 
 H^2 x E geometry space with webVR support. WASD + Arrows to move, space or p to play/pause. Numbers 1-9 give different models.
 
