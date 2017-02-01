@@ -14,18 +14,15 @@ var currentBoostR = 0.0;
 var currentBoostH2 = new THREE.Matrix4().set(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
 
 var decorationArray = [
-  'cube', 
-  'cubeThickEdges',
-  'truncatedCube', 
-  'truncatedCubeTrisOnly',
-  'truncatedCubeBdry', 
-  'truncatedCubeMinimal',
-  'cubeDual', 
-  'monkey',
-  'rhombicDodec'
+  'cube_more_faces',
+  'cubeThickEdges_more_faces',
+  'truncatedCube_more_faces', 
+  'truncatedCubeTrisOnly_more_faces',
+  'cubeDual_more_faces',
+  'cube'
   ];
 
-var decoration = "truncatedCube";
+var decoration = "truncatedCube_more_faces";
 var colourMode = 0;
 
 var doubleSided = false;
