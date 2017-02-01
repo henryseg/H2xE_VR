@@ -12,6 +12,7 @@ function acosh(arg) {
 var dist = 2*acosh( Math.sqrt(1.5))  // 436 or 46 in H^2
 
 var globalZScaling = 0.810497;
+
 // The globalZScaling comes from the inverse of the exponential map.
 // The corners of the cube are (it turns out) located at {1,1,1} on the 
 // hyperboloid. The inverse of the exponential map says that this 
@@ -19,23 +20,31 @@ var globalZScaling = 0.810497;
 // where r = sqrt(x^2+y^2).
 // Here, globalZScaling = arcsinh(sqrt(2))/sqrt(2) = 0.810497.
 
-var globalCoordChange = new THREE.Matrix4().set(   
-    0, 1, 0, 0,
-    0, 0, 1, 0, //rotate so that R is in vertical dir on screen
-    1, 0, 0, 0,
-    0, 0, 0, 1);
+// var globalCoordChange = new THREE.Matrix4().set(   
+//     0, 1, 0, 0,
+//     0, 0, 1, 0, //rotate so that R is in vertical dir on screen and Y (cyan) is in front of you
+//     1, 0, 0, 0,
+//     0, 0, 0, 1);
 
 // var globalCoordChange = new THREE.Matrix4().set(   
+//     1, 0, 0, 0,
+//     0, 0, 1, 0, //rotate so that R is in vertical dir on screen and X (red) is in front of you
 //     0, -1, 0, 0,
-//     0, 0, 1, 0, //rotate so that R is in vertical dir on screen
-//     -1, 0, 0, 0,
 //     0, 0, 0, 1);
 
 // var globalCoordChange = new THREE.Matrix4().set(   
 //     0, -1, 0, 0,
-//     1, 0, 0, 0, 
+//     1, 0, 0, 0, //rotate so that H is in vertical dir on screen and you are looking down R
 //     0, 0, 1, 0,
 //     0, 0, 0, 1);
+
+var rotation_angle = 0;
+
+var globalCoordChange = new THREE.Matrix4().set(   
+    0, 1, 0, 0,
+    -Math.sin(rotation_angle), 0, Math.cos(rotation_angle), 0, //rotate so that we are partway between H2 (above) and R (below)
+    Math.cos(rotation_angle), 0, Math.sin(rotation_angle), 0,
+    0, 0, 0, 1);
 
 var globalCoordChangeInv = new THREE.Matrix4().identity();
 globalCoordChangeInv.getInverse(globalCoordChange);
