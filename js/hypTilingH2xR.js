@@ -125,7 +125,7 @@ function init() {
   // infoSprite.rotation.x = -.3;
   // scene.add( infoSprite );
 
-  effect.render(scene, camera);
+  effect.render(scene, camera, animate);
 }
 
 function loadStuff(){ 
@@ -222,8 +222,8 @@ function animate() {
   }
 
   
-  effect.render(scene, camera);
-  requestAnimationFrame(animate);
+  effect.render(scene, camera, animate);
+  // requestAnimationFrame(animate);
 }
 
 document.addEventListener('keydown', function(event) { selectShape(event); }, false);
