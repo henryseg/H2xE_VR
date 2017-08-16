@@ -263,8 +263,3 @@ function changeColourMode(event) {
 
 init();
 animate();
-
-//Listen for double click event to enter full-screen VR mode
-document.body.addEventListener( 'click', function() {
-  effect.setFullScreen( true );
-});

@@ -107,6 +107,7 @@ THREE.VREffect = function ( renderer, done ) {
 
 	this._init();
 
+	var iconHidden = true;
 	this.render = function ( scene, camera, animate ) {
 		var renderer = this._renderer;
 		var vrHMD = this._vrHMD;
@@ -122,10 +123,15 @@ THREE.VREffect = function ( renderer, done ) {
 		}
 
 		requestAnimationFrame(animate);
-		// if (this.phoneVR.deviceAlpha !== null) { //default to stereo render for devices with orientation sensor, like mobile
-		// 	this.renderStereo.apply( this, [scene, camera] );
-		// 	return;
-		// }
+		if (iconHidden && this.phoneVR.orientationIsAvailable()) {
+			iconHidden = false;
+			document.getElementById("vr-icon").style.display = "block";
+		}
+
+		if ( this.phoneVR.isVRMode === true && this.phoneVR.orientationIsAvailable()) { //default to stereo render for devices with orientation sensor, like mobile
+			this.renderStereo.apply( this, [scene, camera] );
+			return;
+		}
 
 		// Regular render mode if not HMD
 		renderer.render.apply( this._renderer, [scene, camera]  );

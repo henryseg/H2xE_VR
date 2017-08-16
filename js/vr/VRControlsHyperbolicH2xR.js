@@ -235,11 +235,22 @@ THREE.VRControls = function ( camera, done ) {
 
 var fixOutside = true; //moves you back inside the central cell if you leave it
 /*
-Listen for double click event to enter full-screen VR mode
+Listen for click event to enter full-screen VR mode
 */
-document.body.addEventListener( 'dblclick', function() {
+document.body.addEventListener( 'click', function() {
+	if (event.target.id === "vr-icon") {
+		event.target.style.display = "none";
+		effect.phoneVR.setVRMode(!effect.phoneVR.isVRMode);
+	}
+
   effect.setFullScreen( true );
+
+
+  if (effect.phoneVR.orientationIsAvailable() && typeof window.screen.orientation !== 'undefined' && typeof window.screen.orientation.lock === 'function') {
+    window.screen.orientation.lock('landscape-primary');
+  }
 });
+
 
 /*
 Listen for keyboard events

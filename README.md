@@ -6,6 +6,7 @@ A websperience by Vi Hart, Andrea Hawksley, Sabetta Matsumoto, and Henry Segerma
 
 Derived from https://github.com/hawksley/hypVR
 
+
 ## Links
 - http://vihart.com
 - http://andreahawksley.com
@@ -16,3 +17,5 @@ Derived from https://github.com/hawksley/hypVR
 - http://www.geometrygames.org/CurvedSpaces/
 - http://www.marctenbosch.com
 - https://github.com/MozVR/vr-web-examples/tree/master/threejs-vr-boilerplate
+
+VR Icon is Creative Commons by Schmidt Sergey: https://thenounproject.com/term/vr/576716/
