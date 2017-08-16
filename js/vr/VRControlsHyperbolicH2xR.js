@@ -8,6 +8,7 @@ THREE.VRControls = function ( camera, done ) {
 
 	this._camera = camera;
 	this._oldVRState;
+	this._defaultPosition = [0,0,0];
 
 	this._init = function () {
 		var self = this;
@@ -91,7 +92,7 @@ THREE.VRControls = function ( camera, done ) {
         var mH2;
         var mR;
 		var offset;
-		if (vrState !== null && vrState.hmd.lastPosition !== undefined) {
+		if (vrState !== null && vrState.hmd.lastPosition !== undefined && vrState.hmd.position[0] !== 0) {
 			offset = new THREE.Vector3();
 			offset.x = vrState.hmd.lastPosition[0] - vrState.hmd.position[0];
 			offset.y = vrState.hmd.lastPosition[1] - vrState.hmd.position[1];
@@ -276,17 +277,23 @@ function key(event, sign) {
   control.active = (sign === 1);
   if (control.index <= 2){
     controls.manualRotateRate[control.index] += sign * control.sign;
-  }
-  else if (control.index <= 5) {
+  } else if (control.index <= 5) {
     controls.manualMoveRate[control.index - 3] += sign * control.sign;
-  }
-  else {
+  } else {
     controls.manualParabolicRate[control.index - 6] += sign * control.sign;
   }
 }
 
 document.addEventListener('keydown', function(event) { key(event, 1); }, false);
 document.addEventListener('keyup', function(event) { key(event, -1); }, false);
+
+//tap and hold to move
+function tap(event, sign) {
+    controls.manualMoveRate[0] += sign;
+}
+
+document.addEventListener('touchstart', function(event) { tap(event, 1); }, false);
+document.addEventListener('touchend', function(event) { tap(event, -1); }, false);
 
 /*
 Handle window resizes
