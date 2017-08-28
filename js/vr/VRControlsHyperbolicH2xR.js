@@ -237,7 +237,7 @@ var fixOutside = true; //moves you back inside the central cell if you leave it
 /*
 Listen for click event to enter full-screen VR mode
 */
-document.body.addEventListener( 'click', function() {
+document.body.addEventListener( 'click', function(event) {
 	if (event.target.id === "vr-icon") {
 		event.target.style.display = "none";
 		effect.phoneVR.setVRMode(!effect.phoneVR.isVRMode);
