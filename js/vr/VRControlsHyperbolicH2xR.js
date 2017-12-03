@@ -243,12 +243,12 @@ document.body.addEventListener( 'click', function(event) {
 		effect.phoneVR.setVRMode(!effect.phoneVR.isVRMode);
 	}
 
-  effect.setFullScreen( true );
-
-
-  if (effect.phoneVR.orientationIsAvailable() && typeof window.screen.orientation !== 'undefined' && typeof window.screen.orientation.lock === 'function') {
-    window.screen.orientation.lock('landscape-primary');
-  }
+ 	if (effect.phoneVR.orientationIsAvailable()) {
+  		effect.setFullScreen( true );
+		if (typeof window.screen.orientation !== 'undefined' && typeof window.screen.orientation.lock === 'function') {
+		  window.screen.orientation.lock('landscape-primary');
+		}
+	}
 });
 
 
